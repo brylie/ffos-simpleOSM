@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Simple OSM</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<script type="text/javascript"
+			src="js/OpenLayers.js"></script>
+		<style>
+			html, body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			#map {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+		<script type="text/javascript">
+			function init() {
+				// Create map
+				var map = new OpenLayers.Map("map");
+
+				// Add OSM layer
+				var osm = new OpenLayers.Layer.OSM();
+				map.addLayer(osm);
+
+				// Set view to max extent
+				map.zoomToMaxExtent();
+
+				// Add markers layer
+				var markers = new OpenLayers.Layer.Markers( "Markers" );
+				map.addLayer(markers);
+
+				// Recenter on user position
+				navigator.geolocation.getCurrentPosition(function(position) {
+					var lonLat = new OpenLayers.LonLat(
+						position.coords.longitude, 
+						position.coords.latitude).transform(
+							new OpenLayers.Projection("EPSG:4326"),
+							map.getProjectionObject()
+						);
+						markers.addMarker(new OpenLayers.Marker(lonLat)
+					);
+       					map.setCenter(lonLat, 14);
+				});
+				
+			}
+		</script>
+	</head>
+	<body onload="init()">
+		<div id="map"></div>
+	</body>
+</html>
+		

@@ -1,0 +1,15 @@
+{
+	"version": "0.1",
+	"name": "Simple OpenStreetMap",
+	"description": "Displays a full screen OpenStreetMap view centered on the user location.",
+	"launch_path": "index.html",
+	"icons": {
+		"16": "images/osm_logo-16.png",
+		"48": "images/osm_logo-48.png",
+		"128": "images/osm_logo-128.png",
+	},
+	"developer": {
+		"name": "Brylie Oxley",
+		"url": "http://brylie.gnumedia.org",
+	},
+}
